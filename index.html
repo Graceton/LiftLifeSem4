@@ -1,0 +1,23 @@
+<!-- ... existing HTML code ... -->
+
+    <!-- Add Firebase SDK scripts here -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyC5Gw4tAAJRf4lT1VIttjUyzDd0AdyyOso",
+        authDomain: "liftlife-11411.firebaseapp.com",
+        projectId: "liftlife-11411",
+        storageBucket: "liftlife-11411.firebasestorage.app",
+        messagingSenderId: "949369652559",
+        appId: "1:949369652559:web:85e9ed4b14505d3172313a",
+        measurementId: "G-YETDPYMC2S"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+</body>
+</html>

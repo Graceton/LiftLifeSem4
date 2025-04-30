@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #FFDDC1, #FFABAB);
+    color: #000;
+}
+.navbar {
+    background-color: #FF7E67;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+.menu a, .join-now a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+.join-now a {
+    background-color: #D72638;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+.content {
+    margin-top: 120px;
+    text-align: center;
+}
+.exercise {
+    background-color: #FF9770;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.exercise img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+}
+.exercise a {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Yoga_Exer.js */
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".exercise input").forEach(input => {
+        input.addEventListener("input", () => {
+            console.log(`${input.placeholder} done:`, input.value);
+        });
+    });
+});

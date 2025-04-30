@@ -1,0 +1,107 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Light & Dark Mode Variables */
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+}
+
+.dark-mode {
+    --bg-color: #1c1c1c;
+    --text-color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #1e81b0, #16607a);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+
+/* Navbar should adapt to the theme */
+.light-mode .navbar {
+    background: linear-gradient(135deg, #1e81b0, #16607a);
+}
+
+.dark-mode .navbar {
+    background: linear-gradient(135deg, #0f4c75, #1b262c);
+}
+
+
+.logo img {
+    width: 80px;
+    border-radius: 50%;
+}
+
+.menu a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover, .menu .active {
+    color: #ffcc00;
+}
+
+.profile a {
+    background-color: #ffcc00;
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.profile a:hover {
+    background-color: #e6b800;
+}
+
+/* Sections */
+.creators, .contact, .thank-you {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.creator-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.creator img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--text-color);
+}
+
+.creator p {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.contact p, .thank-you p {
+    font-size: 18px;
+    margin: 10px 0;
+}

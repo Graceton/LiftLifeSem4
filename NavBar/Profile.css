@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #8B0000, #FFA500);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: linear-gradient(to right, #8B0000, #FFA500);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 100px;
+    border-radius: 5px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    width: 90%;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    flex: 7;
+    background: linear-gradient(to right, #A52A2A, #FFA500);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    background: blue;
+    padding: 10px;
+    border-radius: 90%;
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-header input {
+    margin-left: 10px;
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: linear-gradient(to right, #FFB347, #FFCC33);
+    text-align: center;
+}
+
+/* Profile Details */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.profile-details input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: linear-gradient(to right, #FFB347, #FFCC33);
+    text-align: center;
+}
+
+.edit-btn,
+.save-btn {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.edit-btn {
+    background: #1E90FF;
+    color: white;
+}
+
+.save-btn {
+    background: #1E90FF;
+    color: white;
+}
+
+/* Goals Section */
+.goals-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.goals-btn,
+.current-goal,
+.completed-goals {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.goals-btn {
+    background: linear-gradient(to right, #8B0000, #FFA500);
+}
+
+.current-goal,
+.completed-goals {
+    background: linear-gradient(to right, #FF4500, #DC143C);
+    flex-grow: 1;
+}
+.logout-btn {
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.logout-btn:hover {
+    background: #FF4500;
+}

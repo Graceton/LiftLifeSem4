@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Workout Reminder</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #9a5200;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .navbar {
+        background-color: #00a1f1;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* Add space at the top so content isn't hidden by the navbar */
+    .content {
+        margin-top: 120px; /* Adjust this value based on your navbar height */
+    }
+
+    .logo img {
+        border-radius: 10px;
+    }
+
+    .menu a {
+        color: white;
+        margin-right: 20px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .menu a:hover {
+        text-decoration: underline;
+    }
+
+    .join-now a {
+        background-color: #1e81b0;
+        padding: 10px 20px;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .join-now a:hover {
+        background-color: #16607a;
+    }
+
+
+    h1 {
+      color: #333;
+    }
+
+    .reminder-container {
+      background: rgb(255, 255, 255);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    input[type="time"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #00d9ff;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .info {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/public/Images/LLLogo 2.jpg" alt="Logo" width="100px" height="100px">
+        </div>
+        <div class="menu">
+            <a href="/Homepage/Homepage2.html">HOME</a>
+            <a href="/Navbar/Workouts.html">WORKOUTS</a>
+            <a href="/Navbar/Goals.html">GOALS</a>
+            <a href="/NavBar/community.html">COMMUNITY</a>
+            <a href="/Navbar/Settings.html">SETTINGS</a>
+        </div>
+        <div class="join-now">
+            <a href="/NavBar/Profile.html" target="_blank">Profile</a>
+            <a href="/NavBar/Suggestion.html" id="profileButton">Suggestion</a>
+        </div>
+    </div>
+    
+</body>
+
+  <h1>Workout Reminder 💪</h1>
+
+  <div class="reminder-container">
+    <label for="reminder-time">Set Daily Reminder Time:</label>
+    <input type="time" id="reminder-time" required>
+    <button onclick="setReminder()">Set Reminder</button>
+    <div class="info" id="info"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js"></script>
+  <script src="/NavBar/Notifications.js"></script>
+  <script>
+    // Request notification permission on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (Notification.permission !== 'granted') {
+        Notification.requestPermission();
+      }
+    });
+
+    function setReminder() {
+      const timeInput = document.getElementById('reminder-time').value;
+      if (!timeInput) return;
+
+      // Use the function exposed by Notifications.js
+      window.setReminderTime(timeInput);
+
+      document.getElementById('info').textContent = `Reminder set for ${timeInput}`;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+
+<!-- Fitness Exercise Recommendation System -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Suggestor</title>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+      <div class="logo">
+          <img src="/Images/MP_Logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+          <a href="/Homepage/HomePage2.html">HOME</a>
+          <a href="/Navbar/Workouts.html">WORKOUTS</a>
+          <a href="/Navbar/About.html">ABOUT US</a>
+          <a href="/Navbar/Settings.html">SETTINGS</a>
+      </div>
+      <div class="profile">
+          <a href="/NavBar/Profile.html" id="profileButton">Profile</a>
+      </div>
+  </div>
+
+  <h1>Exercise Recommendation System</h1>
+
+  <div class="container">
+      <div class="form-container">
+          <h2>Tell us about yourself</h2>
+          <div class="form-group">
+              <label for="ageInput">Age:</label>
+              <input type="number" id="ageInput" min="1" max="120" placeholder="Enter your age" required>
+          </div>
+          
+          <div class="form-group">
+              <label for="genderSelect">Gender:</label>
+              <select id="genderSelect">
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+              </select>
+          </div>
+          
+          <div class="form-group">
+              <label for="heightInput">Height (cm):</label>
+              <input type="number" id="heightInput" min="50" max="250" placeholder="Enter your height in cm" required>
+          </div>
+          
+          <div class="form-group">
+              <label for="weightInput">Weight (kg):</label>
+              <input type="number" id="weightInput" min="20" max="300" placeholder="Enter your weight in kg" required>
+          </div>
+          
+          <div class="form-group">
+              <label for="medicalInput">Medical Conditions (if any):</label>
+              <textarea id="medicalInput" placeholder="Enter any medical conditions (leave empty if none)"></textarea>
+          </div>
+          
+          <div class="form-group">
+              <label for="focusSelect">Body Part to Focus On:</label>
+              <select id="focusSelect">
+                  <option value="">Select focus area</option>
+                  <option value="arms">Arms</option>
+                  <option value="legs">Legs</option>
+                  <option value="core">Core</option>
+                  <option value="plyometric">Plyometric</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="calisthenics">Calisthenics</option>
+              </select>
+          </div>
+          
+          <button id="recommendBtn" onclick="generateRecommendations()">Get Exercise Recommendations</button>
+      </div>
+      
+      <div id="resultsCtn" class="results-container hidden">
+          <h2>Your Personalized Exercise Plan</h2>
+          <div id="resultsContent"></div>
+      </div>
+  </div>
+
+  <style>
+      html { color-scheme: light dark; }
+      
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          margin: 0;
+          padding: 20px;
+          text-align: left;
+      }
+
+      .navbar {
+          background-color: #00a1f1;
+          padding: 15px 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: fixed;
+          width: 100%;
+          top: 0;
+          z-index: 1000;
+          box-sizing: border-box;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo img {
+          height: 60px;
+          border-radius: 8px;
+          vertical-align: middle;
+      }
+
+      .menu {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+      }
+
+      .menu a {
+          color: white;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 16px;
+          transition: color 0.3s ease;
+      }
+
+      .menu a:hover {
+          color: #f0f0f0;
+          text-decoration: underline;
+      }
+
+      .profile {
+          display: flex;
+          align-items: center;
+      }
+
+      .profile a {
+          background-color: #1e81b0;
+          padding: 8px 20px;
+          color: white;
+          text-decoration: none;
+          font-weight: bold;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+      }
+
+      .profile a:hover {
+          background-color: #16607a;
+      }
+      
+      h1 {
+          text-align: center;
+          margin-top: 80px;
+          margin-bottom: 20px;
+      }
+      
+      .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+      }
+      
+      .form-container {
+          background-color: #6b4226;
+          padding: 20px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+      }
+      
+      .form-group {
+          margin-bottom: 15px;
+      }
+
+
+      label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+      }
+      
+      input, select, textarea {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #cccccc00;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+      
+            select {
+          background-color: #666; /* Grey background for select elements */
+          color: white; /* White font for select elements */
+      }
+      
+      select option {
+          background-color: #666; /* Grey background for dropdown options */
+          color: white; /* White font for dropdown options */
+      }
+      textarea {
+          min-height: 60px;
+          resize: vertical;
+      }
+      
+      button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 10px;
+      }
+      
+      button:hover {
+          background-color: #45a049;
+      }
+      
+      .results-container {
+          background-color: rgba(0, 0, 0, 0.05);
+          padding: 20px;
+          border-radius: 8px;
+      }
+      
+      .exercise-card {
+          background-color: rgba(255, 255, 255, 0.3);
+          margin-bottom: 15px;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .exercise-card h3 {
+          margin-top: 0;
+      }
+      
+      .hidden {
+          display: none;
+      }
+      
+      .advice-box {
+          background-color: rgba(255, 255, 0, 0.1);
+          padding: 10px;
+          border-radius: 5px;
+          margin-top: 15px;
+      }
+      
+      @media (prefers-color-scheme: dark) {
+          .form-container, .results-container {
+              background-color: rgba(255, 255, 255, 0.1);
+          }
+          
+          .exercise-card {
+              background-color: rgba(255, 255, 255, 0.15);
+          }
+          
+          input, select, textarea {
+              background-color: rgba(255, 255, 255, 0.1);
+              color: white;
+              border-color: #444;
+          }
+      }
+
+      @media (max-width: 768px) {
+          .navbar {
+              flex-wrap: wrap;
+              padding: 10px 15px;
+          }
+          
+          .menu {
+              gap: 15px;
+              margin: 10px 0;
+          }
+          
+          .profile a {
+              padding: 6px 15px;
+          }
+      }
+  </style>
+
+<script>
+  // Exercise database
+  const exercises = {
+    arms: ["Push Ups", "Bicep Curl", "Tricep Dips"],
+    legs: ["Squats", "Lunges", "High Jogs"],
+    core: ["Planks", "Crunches", "Leglifts"],
+    plyometric: ["Jump-Squats", "Step Up Jumps", "Lateral Hops"],
+    yoga: ["Downward Dog", "Cobra Pose", "Child's Pose"],
+    calisthenics: ["More Pushups", "More Bodyweight Squats", "More Tricep Dips"]
+  };
+  
+  // Function to validate form
+  function validateForm() {
+    const age = ageInput.value.trim();
+    const gender = genderSelect.value;
+    const height = heightInput.value.trim();
+    const weight = weightInput.value.trim();
+    const focus = focusSelect.value;
+    
+    if (!age || !gender || !height || !weight || !focus) {
+      alert("Please fill out all required fields");
+      return false;
+    }
+    
+    return true;
+  }
+  
+  // Function to generate exercise recommendations
+  function generateRecommendations() {
+    if (!validateForm()) return;
+    
+    // Get form values
+    const age = parseInt(ageInput.value);
+    const gender = genderSelect.value;
+    const height = parseInt(heightInput.value);
+    const weight = parseInt(weightInput.value);
+    const medicalConditions = medicalInput.value.trim();
+    const focus = focusSelect.value;
+    
+    // Calculate BMI
+    const bmi = weight / ((height / 100) * (height / 100));
+    
+    // Determine intensity level based on age and potential medical conditions
+    let intensityLevel = "moderate";
+    
+    if (age < 18) {
+      intensityLevel = "low";
+    } else if (age >= 18 && age <= 40 && !medicalConditions) {
+      intensityLevel = "high";
+    } else if (age > 60 || medicalConditions) {
+      intensityLevel = "low";
+    }
+    
+    // Adjust based on BMI
+    if (bmi > 30) {
+      intensityLevel = intensityLevel === "high" ? "moderate" : "low";
+    }
+    
+    // Generate exercise recommendations
+    const recommendedExercises = getRecommendedExercises(focus, intensityLevel);
+    
+    // Display results
+    displayResults(recommendedExercises, intensityLevel, age, gender, bmi);
+  }
+  
+  // Function to get recommended exercises based on body focus and intensity
+  function getRecommendedExercises(focus, intensityLevel) {
+    const focusExercises = exercises[focus];
+    const recommendations = [];
+    
+    // Determine number of exercises to recommend (1-3 based on intensity)
+    const numExercises = intensityLevel === "low" ? 1 : 
+                         intensityLevel === "moderate" ? 2 : 3;
+    
+    // Select exercises
+    for (let i = 0; i < numExercises; i++) {
+      if (i < focusExercises.length) {
+        const exercise = focusExercises[i];
+        
+        // Determine reps and sets based on intensity level
+        let reps, sets;
+        if (intensityLevel === "low") {
+          reps = Math.floor(Math.random() * 5) + 5; // 5-10 reps
+          sets = 2;
+        } else if (intensityLevel === "moderate") {
+          reps = Math.floor(Math.random() * 5) + 8; // 8-13 reps
+          sets = 3;
+        } else { // high
+          reps = Math.floor(Math.random() * 7) + 10; // 10-17 reps
+          sets = 4;
+        }
+        
+        recommendations.push({
+          name: exercise,
+          reps: reps,
+          sets: sets
+        });
+      }
+    }
+    
+    return recommendations;
+  }
+  
+  // Function to display the results
+  function displayResults(recommendations, intensityLevel, age, gender, bmi) {
+    const resultsContent = document.getElementById('resultsContent');
+    resultsContent.innerHTML = '';
+    
+    // Create intro message
+    const introMessage = document.createElement('div');
+    introMessage.className = 'intro-message';
+    
+    let bmiCategory;
+    if (bmi < 18.5) bmiCategory = "underweight";
+    else if (bmi >= 18.5 && bmi < 25) bmiCategory = "normal weight";
+    else if (bmi >= 25 && bmi < 30) bmiCategory = "overweight";
+    else bmiCategory = "obese";
+    
+    introMessage.innerHTML = `
+      <p>Based on your profile (${age} years old, ${gender}, BMI: ${bmi.toFixed(1)} - ${bmiCategory}), 
+      we recommend a <strong>${intensityLevel} intensity</strong> workout routine.</p>
+      <p>Here are your personalized exercises:</p>
+    `;
+    
+    resultsContent.appendChild(introMessage);
+    
+    // Add exercise cards
+    recommendations.forEach(exercise => {
+      const exerciseCard = document.createElement('div');
+      exerciseCard.className = 'exercise-card';
+      exerciseCard.innerHTML = `
+        <h3>${exercise.name}</h3>
+        <p><strong>Sets:</strong> ${exercise.sets}</p>
+        <p><strong>Reps:</strong> ${exercise.reps} per set</p>
+        <p>Take 60-90 seconds rest between sets</p>
+      `;
+      resultsContent.appendChild(exerciseCard);
+    });
+    
+    // Add general advice based on medical conditions
+    if (medicalInput.value.trim()) {
+      const adviceBox = document.createElement('div');
+      adviceBox.className = 'advice-box';
+      adviceBox.innerHTML = `
+        <p><strong>Important:</strong> Since you mentioned medical conditions, please consult with a healthcare provider 
+        before starting any exercise program. Adjust intensity as needed based on how you feel.</p>
+      `;
+      resultsContent.appendChild(adviceBox);
+    }
+    
+    // Show results container
+    resultsCtn.classList.remove('hidden');
+  }
+</script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-i18n@8"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-multiselect@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-chartjs@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex-chartjs@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex-persistedstate@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex-persistedstate@4/dist/vuex-persistedstate.umd.min.js"></script> -->
+</body>
+</html>

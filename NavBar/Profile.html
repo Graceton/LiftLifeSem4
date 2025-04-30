@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="Profile.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img alt="Logo" src="/Images/MP_Logo.png"/>
+            </div>
+        </div>
+            <nav>
+                <a href="/Homepage/Homepage2.html">HOME</a>
+                <a href="/Navbar/Workouts.html">WORKOUTS</a>
+                <a href="/NavBar/community.html">COMMUNITY</a>
+                <a href="/Navbar/Settings.html">SETTINGS</a>
+                <button id="logout-btn" class="logout-btn" onclick="logout()" style="margin-left:10px;">LOGOUT</button>
+            </nav>
+    </header>
+
+    <main>
+        <!-- Profile Section (70%) -->
+        <div class="profile-section">
+            <div class="profile-header">
+                <!-- <div class="profile-image">
+                     <img alt="Profile Image" src="/Images/NPC1.png"/>
+                </div> -->
+                <input type="text" placeholder="Name"/> 
+            </div>
+            <div class="profile-details">
+                <input type="email" placeholder="E mail address"/>
+                <input type="number" placeholder="Age"/>
+                <input type="text" placeholder="Gender"/>
+                <input type="text" placeholder="Medical Condition (Fit / not Fit)"/>
+                <input type="text" placeholder="Height"/>
+                <input type="text" placeholder="Weight"/>
+                <button class="edit-btn">Edit Details</button>
+                <button class="save-btn" onclick="saveProfile()">Save</button>
+            </div>
+        </div>
+
+        <!-- Goals Section (30%) -->
+        <div class="goals-section">
+            <button class="goals-btn">Goals</button>
+            <label for="current-goal">Current Goal</label>
+            <textarea id="current-goal" class="current-goal" rows="2" placeholder="Enter your current goal"></textarea>
+            <label for="completed-goals">Completed Goals</label>
+            <textarea id="completed-goals" class="completed-goals" rows="2" placeholder="Enter your completed goals"></textarea>
+        </div>
+    </main>
+    <script type="module" src="/NavBar/Profile.js"></script>
+</body>
+</html>
