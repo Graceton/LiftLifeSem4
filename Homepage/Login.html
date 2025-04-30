@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Google Auth</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1c1c1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo-image {
+            max-width: 200px;
+            margin-bottom: 20px;
+            border-radius: 40%;
+        }
+
+        .form-box {
+            width: 300px;
+            background: orange;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .button-box {
+            width: 100%;
+            background: #000;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        #btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: orange;
+            border-radius: 10px;
+            transition: 0.5s;
+            z-index: 0;
+        }
+
+        .input-group {
+            display: none;
+            flex-direction: column;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #login {
+            display: block;
+        }
+
+        #google-auth {
+            display: none;
+            flex-direction: column;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #4285f4;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/Images/Logo.png" class="logo-image" alt="Lift Life Logo">
+
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Login</button>
+                <button type="button" class="toggle-btn" onclick="googleAuth()">Signup</button>
+            </div>
+            <form id="login" class="input-group" onsubmit="handleLogin(event)">
+                <input type="email" class="input-field" placeholder="Email" required>
+                <input type="password" class="input-field" placeholder="Enter Password" required>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <form id="register" class="input-group" onsubmit="handleRegister(event)" style="display:none; flex-direction:column;">
+                <input type="text" class="input-field" placeholder="Username" required>
+                <input type="email" class="input-field" placeholder="Email" required>
+                <input type="password" class="input-field" placeholder="Enter Password" required>
+                <button type="submit" class="submit-btn">Signup</button>
+            </form>
+            <div id="google-auth" class="input-group">
+                <button class="google-btn" onclick="handleGoogleAuth()">Sign up with Google</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./Login.js"></script>
+    <!-- <script type="module" src="/js/linkRedirect.js"></script>
+    <script type="module" src="/js/loginCheck.js "></script> -->
+
+</body>
+</html>

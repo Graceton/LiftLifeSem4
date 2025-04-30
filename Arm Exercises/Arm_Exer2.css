@@ -1,0 +1,108 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #0073ff, #87b1fa);
+    color: #000;
+}
+
+.navbar {
+    background-color: #00a1f1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu a, .join-now a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.join-now a {
+    background-color: #1f1cff;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.logo img {
+    border-radius: 10px;
+}
+
+.content {
+    margin-top: 120px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-top: 30px;
+    color: #000;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.exercise-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.exercise {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0000ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px;
+    color: white;
+    width: 200px;
+}
+
+.exercise-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.exercise a {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.exercise a:hover {
+    color: #cccccc;
+}
+
+.exercise input {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
